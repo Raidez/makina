@@ -1,0 +1,15 @@
+{
+  "name": "makina",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Raidez & Purasur",
+  "license": "ISC",
+  "dependencies": {
+    "lowdb": "^1.0.0"
+  }
+}
