@@ -1,24 +1,25 @@
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
 
-const adapter = new FileSync('../../makina/db.json');
+const adapter = new FileSync("../../makina/db.json");
 const db = low(adapter);
 
-// Set some defaults (required if your JSON file is empty)
-db.defaults({ posts: [], user: {}, count: 0 })
-    .write();
+db.defaults({ players: [] }).write();
 
-// Add a post
-db.get('posts')
-    .push({ id: 1, title: 'lowdb is awesome' })
-    .write();
-
-// Set a user using Lodash shorthand syntax
-db.set('user.name', 'typicode')
-    .write();
-
-// Increment count
-db.update('count', n => n + 1)
-    .write();
-
-
+// lors de la connexion d'un joueur
+on("playerConnecting", (playerName) => {
+  const player = db.get("players").find({ name: playerName }).value();
+  console.log(player);
+  if (!player) {
+    /// ajout du nouveau joueur dans la base
+    db.get("players")
+      .push({
+        name: playerName,
+        experience: 0,
+      })
+      .write();
+  } else {
+    /// récupération des informations du joueur
+    exports.XNLRankBar.Exp_XNL_SetInitialXPLevels(player.experience, true, false);
+  }
+});
