@@ -107,3 +107,8 @@ RegisterCommand(
   },
   false
 );
+
+onNet("updateEXP", (amount) => {
+  console.log("EVENT");
+  exports.XNLRankBar.Exp_XNL_SetInitialXPLevels(amount, true, true);
+});
